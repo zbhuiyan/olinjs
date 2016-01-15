@@ -29,3 +29,9 @@ Think about the design principles we talked about.  Think about using nice fonts
 ## Re-create one of [these](https://philipwalton.github.io/solved-by-flexbox/) Flexbox layouts
 
 ## Add error handling to a previous app
+
+## Lodash programming exercise
+
+Write a program that removes duplicate elements from a set
+
+## Modularize some previous non-modular code you've written
