@@ -14,7 +14,7 @@ var FakeDatabase = module.exports = { //can export this db at top of own modules
 
     remove: function(index) {
         //removes item located at index in array and returns it
-        var index = data.length - 1
+        // var index = data.length - 1
         return FakeDatabase.data.splice(index,1);
     }
    

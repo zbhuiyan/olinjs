@@ -44,7 +44,8 @@ cats.newcat = function(req, res) {
 cats.list = function(req,res) {
   console.log(db.data);
   res.render("cats", {
-    cats:db.data
+    cats:db.data,
+    message: "These are all the cats in existence:"
   })
 }
 
@@ -52,17 +53,21 @@ cats.list = function(req,res) {
 cats.deletecat = function(req, res) {
   var data = db.data;
   function compare(a,b){
-    if (a.age < b.age)
+    if (a.age > b.age)
       return -1
-    else if (a.age > b.age)
+    else if (a.age < b.age)
       return 1
     else 
       return 0;
   }
-  data.sort(compare);
+  var sortedList = data.sort(compare);
+  // console.log(sortedList);
+  cats = db.remove(sortedList);
+  console.log(cats);
 
   res.render("cats", {
-    cats:cats
+    cats:cats,
+    message: "You have killed a cat."
   })
 
 }
