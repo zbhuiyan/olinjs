@@ -19,9 +19,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', index.home);
 app.get("/cats", cats.list);
-app.get("/cats/new", cats.new);
+app.get("/cats/new", cats.newcat);
 app.get("/cats/bycolor/:color", cats.list);
-app.get("/cats/delete/old", cats.delete);
+app.get("/cats/delete/old", cats.deletecat);
 app.listen(3000);
 
 
