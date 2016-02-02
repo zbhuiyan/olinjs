@@ -1,0 +1,12 @@
+<h1>{{message}}</h1>
+<ul>
+  {{#each cats}}
+  <li>{{name}}:
+    <ul>
+      <li>age: {{age}}</li>
+      <li>color: {{#each color}}{{this}}
+      {{/each}}</li>
+    </ul>
+  </li>
+  {{/each}}
+</ul>
