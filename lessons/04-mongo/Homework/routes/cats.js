@@ -28,8 +28,6 @@ function renderCat() {
   return cat;
 }
 
-
-
 var newCat = function(req,res){
   var cat = renderCat(); //call this fxn to form a new cat obj
   var newCat = new Cat(cat);
@@ -79,6 +77,21 @@ var deleteCat = function(req,res){
   });
 }  
 
+var groupCat = function (req,res){
+  Cat.find({color: 'blue'}, function(err, cats){
+    console.log(cats);
+    console.log(cats[0].name);
+    if (err) {
+      console.log('Error, cant find blue cat', err)
+    }
+    else{
+      res.render('groupby', {cats:cats});
+    }
+  });
+}
+
+
 module.exports.listCats = listCats;
 module.exports.deleteCat = deleteCat;
 module.exports.newCat = newCat;   
+module.exports.groupCat = groupCat;
