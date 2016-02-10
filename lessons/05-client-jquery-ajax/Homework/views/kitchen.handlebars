@@ -1,7 +1,7 @@
 <h1> Kitchen </h1>
 
 {{#each orders}}
-	<form class = "kitchen" id="{{this.__id}}" action="updateKitchen" method = "POST">
+	<form class = "kitchen" id="{{this.id}}" action="updateKitchen" method = "POST">
 		<p> 
 			<span>{{this.customer}} = {{this.ingredientString}} </span>
 			<input type ="submit" value ="Fulfilled">

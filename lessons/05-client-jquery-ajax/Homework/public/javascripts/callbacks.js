@@ -1,11 +1,14 @@
 var CALLBACKS = {
 	success: { //order is marked as fulfilled in db and removed from page
 			orderFulfilled: function(data, status){
-				var formID = '#' +data;
+				console.log('orderFulfilled');
+				var formID = '#' +data.orderID;
 				$(formID).remove();
+				console.log('hwh');
 			},
 		toggleIngredient:function(data, status){
 			var formID = '#' +data;
+
 			var $form = $(formID).remove();
 			$form.toggleClass('inStock outOfStock');
 			var newVals = $form.hasClass ('inStock') ?

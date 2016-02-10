@@ -12,7 +12,7 @@ var index = require('./routes/index');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
-//config app
+//configure app.js
 var app = express();
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -28,11 +28,12 @@ app.get('/', index.home);
 app.get('/ingredients', index.ingredients);
 app.get('/order', index.order);
 app.get('/kitchen', index.kitchen);
+// app.get('/kitchen', index.fulfilled);
 
 //posting
 app.post('/fulfilled', index.fulfilled);
 app.post('/kitchen', index.kitchen);
-app.post('/updateKitchen', index.fulfilled);
+// app.post('/updateKitchen', index.fulfilled);
 app.post('/markOutOfStock', index.markOutOfStock);
 app.post('/markInStock', index.markInStock);
 app.post('/placeOrder', index.placeOrder);
@@ -40,6 +41,6 @@ app.post('/editIngredient', index.editIngredient);
 app.post('/addIngredient', index.addIngredient);
 
 
-app.listen(3000); //whatever is in the environment variable PORT, or 3000 if there's nothing there.
+app.listen(3000);
 
 

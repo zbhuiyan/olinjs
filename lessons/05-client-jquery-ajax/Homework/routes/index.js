@@ -20,14 +20,18 @@ routes.ingredients = function(req,res){
 		var outStockData = [];
 		data.forEach(function(d){ //can also use ternary operator
 			if (d.inStock){
+				console.log('checking in stock');
 				inStockData.push(d);}
 			else {
+				console.log('checking outta stock');
 				outStockData.push(d);}
 		});
 		var packageddata = {'instock': inStockData,'outofstock':outStockData};
-	});
+	
 	//render packageddata to ingredients handlebars
+	console.log(packageddata);
 	res.render('ingredients',packageddata);
+	});
 }
 
 routes.order = function(req,res){
@@ -43,6 +47,7 @@ routes.kitchen = function(req,res){
 	Order.find(function(err,data){
 		var packageddata = {'orders':data};
 		//render to kitchen.handlebars
+		console.log(packageddata.orders[0].id);
 		res.render('kitchen', packageddata);
 	});
 } 
@@ -56,8 +61,10 @@ routes.kitchen = function(req,res){
 routes.fulfilled = function(req,res){
 	//ID of order, remove it from Order
 	var orderID = req.body.id;
+	// var ingredientID = req.body.id;
+	console.log('whats')
 	Order.findOneAndRemove({'__id':orderID}, function(err, data){
-		res.end(ingredientID); //stop processing and return ID
+		res.send({orderID: orderID}); //stop processing and return ID
 	});
 }
 routes.markInStock = function(req,res){

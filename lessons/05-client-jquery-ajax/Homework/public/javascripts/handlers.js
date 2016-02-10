@@ -29,25 +29,32 @@ var HANDLERS = {
 				}
 			}
 		}
-
 	},
-	submitHandler: function(route,success,ingreData){
+
+	makeSubmitHandler: function(route,success,ingreData){
 		
 		return function(event){
-			console.log('hi');
+			// console.log('hi');
 			var $form = $(event.target);
 			var postData = {};
 			if (ingreData) {
+				console.log('hi');
 				var form = $(event.target);
 				postData.name = $form.find('input#name').val();
 				postData.price = $form.find('input#price').val();
 			}else{
+				console.log('hello');
+				console.log(event.target);
 				postData.id = event.target.id;
 			}
-			event.preventDefault();
+			event.preventDefault(); //so page wont have to refresh
+			console.log(postData);
+			console.log(route);
 			$.post(route,postData)
 				.done(success)
 				.error(CALLBACKS.error);
 		}
 	}
 }
+
+
