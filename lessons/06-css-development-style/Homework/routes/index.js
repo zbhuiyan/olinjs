@@ -37,14 +37,19 @@ routes.post = function(req,res){
 	//post a twote, disabled/not visible if user isnt logged in
 	//include display of logged-in user
 	var newTwote = new Twote(req.body);
+	console.log("post req body", req.body);
 	newTwote.user = req.session.username;
 
 	var date = new Date();
 	var time = date.getTime();
 	newTwote.time = time;
+	console.log('newTwote before save', newTwote.text);
 	newTwote.save(function(err){
-		console.log("Can't add new twote", err);
-		res.redirect('twotterfd'); //redirects to feed
+		if (err){
+			console.log("Can't add new twote", err);
+		}
+		//res.send to client side
+		res.send('coming from post'); 
 	
 	});
 
@@ -86,6 +91,7 @@ routes.twotterfd = function(req,res){
 						res.status(500).send("Twotter feed not working properly", err);
 					}else{
 						if (req.session.username){
+							console.log(req.session.username);
 							res.render("twotter", {
 								name:req.session.username,
 								listUsers: twotterusers,
