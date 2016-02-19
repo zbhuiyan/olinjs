@@ -92,8 +92,9 @@ routes.twotterfd = function(req,res){
 				}else{
 					if (req.session.username){
 						console.log('twotes', twotes);
-						renderTwoteFd.text =  twotes
+						renderTwoteFd.text =  twotes;
 							console.log(req.session.username);
+							renderTwoteFd.name = req.session.username;
 							res.render('twotter', renderTwoteFd);
 						}else{
 							var message = "Please log on"
