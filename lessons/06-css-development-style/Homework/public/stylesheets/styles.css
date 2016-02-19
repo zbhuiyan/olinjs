@@ -16,8 +16,8 @@ div.top
             width: 96%;
             margin-left: auto;
             margin-right: auto;
-            margin-top: none;
-            margin-bottom: none;
+            margin-top: auto;
+            margin-bottom: auto;
             background-color: #7FFFD4;
             padding: 40px;
 			border: 1px;

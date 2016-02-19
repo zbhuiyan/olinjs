@@ -30,6 +30,3 @@ $currentUserName = $currentUserName.substring(0, $currentUserName.length - 1); /
 console.log("current user is ", $currentUserName);
 
 
-
-
-//no highlight/fblogstat

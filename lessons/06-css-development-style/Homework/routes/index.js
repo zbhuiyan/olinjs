@@ -49,11 +49,11 @@ routes.post = function(req,res){
 			console.log("Can't add new twote", err);
 		}
 		//res.send to client side
-		res.send('coming from post'); 
+		res.send('twotter', newTwote.text); 
 	
 	});
-
 }
+
 
 routes.listUsers = function(req,res){
 	//list all users, clicking on a user highlights the user's twotes
@@ -77,50 +77,38 @@ routes.deleteTwote = function(req,res){
 }
 
 routes.twotterfd = function(req,res){
-	var twotterusers
-	User.find()
-		.exec(function(err,twotterusers){
-			if (err){
-				res.status(500).send(err);
-			}else{
-				twotterusers = twotterusers;
-				Twote.find()
-					.sort({'$natural':-1}) //reverse collection scan
-					.exec(function(err,twotes){
-					if (err){
-						res.status(500).send("Twotter feed not working properly", err);
-					}else{
-						if (req.session.username){
+	var renderTwoteFd = {};
+	User.find({})
+	.exec(function(err,twotterusers){
+		if (err){
+			res.status(500).send(err);
+		}else{
+			renderTwoteFd.user = twotterusers;
+			Twote.find({})
+				.sort({'$natural':-1}) //reverse collection scan
+				.exec(function(err,twotes){
+				if (err){
+					res.status(500).send("Twotter feed not working properly", err);
+				}else{
+					if (req.session.username){
+						console.log('twotes', twotes);
+						renderTwoteFd.text =  twotes
 							console.log(req.session.username);
-							res.render("twotter", {
-								name:req.session.username,
-								listUsers: twotterusers,
-								twote: twotes
-							});
+							res.render('twotter', renderTwoteFd);
 						}else{
 							var message = "Please log on"
 							res.render("loggedOut", {
 								message:message
-							});
+							});	
 						}
 					}
-					});
+				});
 			}
 		});
 }
 
 
 
-// routes.listTwotes = function(req,res){
-// 	//list all twotes (text & author) with most recent at top.
-// 	Twote.find({}, function(err, data){
-// 		if (err){
-// 			console.log("Can't list twotes", err);
-// 		}
-// 		res.render('home', data);
-// 	});
-	
-// }
 
 
 module.exports = routes;
