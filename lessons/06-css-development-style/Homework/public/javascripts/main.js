@@ -1,26 +1,35 @@
-var $kitchen; 
-var $inStock; 
-var $outOfStock;
-var $editIngredient; 
-var $addIngredient; 
-var $order; 
-var $orderOpt; 
+//clientside - requests pages from server to display to user (client = web browser)
 
-function registerSubmitHandlers () {
-  //unbind removes all handlers attached to the elements:
-  $kitchen = $('form.kitchen').unbind();
-  $inStock = $('form.markInStock').unbind();
-  $outOfStock = $('form.MarkOutOfStock').unbind();
-  $editIngredient = $('input.edit').unbind();
-  $addIngredient = $('form#newIngredient').unbind();
-  $order = $('form#order').unbind(); 
-  $orderOpt = $('input.orderOpt').unbind();
-  $kitchen.submit(HANDLERS.makeSubmitHandler('fulfilled', CALLBACKS.success.orderFulfilled));
-  $inStock.submit(HANDLERS.makeSubmitHandler('outOfStock', CALLBACKS.success.toggleIngredient));
-  $outOfStock.submit(HANDLERS.makeSubmitHandler('inStock', CALLBACKS.success.toggleIngredient));
-  $addIngredient.submit(HANDLERS.makeSubmitHandler('addIngredient', CALLBACKS.success.newIngredient, true));
-  $editIngredient.click(HANDLERS.click.edit);
-  $orderOpt.click(HANDLERS.click.orderOpt);
-}
+var $loginForm = $('#login-form');
+var $user = $('.user');
+var $currentUser = $('.current-user-name');
+var $currentUserName;
+var $currentTwotes;
+var $deleteButton = $('#delete-button');
 
-registerSubmitHandlers();
+var onSuccess = function(data, status){
+  $user = $('.'+data.name);
+  $user.remove();
+};
+
+var error = function(data, status){
+  console.log("Error", data);
+};
+
+$deleteButton.click(
+  function(){
+    $.post('/deleteTwote', $currentUserName)
+      .done(onSuccess);
+  };
+)
+
+
+$currentUserName =$currentUser.text();
+
+$currentUserName = $currentUserName.substring(0, $currentUserName.length - 1); //assigns name of user
+console.log("current user is ", $currentUserName);
+
+
+
+
+//no highlight/fblogstat

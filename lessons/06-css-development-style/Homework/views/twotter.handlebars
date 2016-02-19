@@ -1,0 +1,39 @@
+<div class = "blue"> 
+<div class="top">
+<div style = "float: left; width: 58%;" id = "header">
+	<h1> Twotter - Hello {{this.name}} </h1>
+</div> 
+
+
+<div style = "float: right; width = 42%;" class="logout">
+<div style = "float: left; width: 50%;"> Not <div class = "current-user-name">{{this.name}}?</div></div><a href = "\" style="float: right; width=60%;">Log Out</a></div> </div>
+
+
+<div class="twoteform" style = "float:left; width: 100%">
+	<form id="twote-post-form" method="POST" action="post">
+		<h3>  Twote : <input id = "twote"  type="text" name="text"/>  <input type="submit" value="post twote" class = button></h3>
+	</form>
+</div>
+
+
+<div class="delete-button" style = "float: left; width = 100%;"><button type="button" class = "button" id = "delete-button">delete twote</button> </div>
+</div>
+
+<br>
+
+<div id = "twotelist"  style = "float: left; width: 55%;" >
+	{{#each post}}
+		<div class = "eachpost {{this.user}}">
+			<h2>{{this.user}}</h2>
+			<p>{{this.text}}</p>
+		</div>
+	{{/each}}
+</div>
+
+
+<div class = "user"   style = "float: right; width: 40%;">
+<h2> Twotter Users </h2>
+{{#each user}}
+	<h4 class = "user">{{this.name}}</h4> 
+{{/each}}
+</div>
