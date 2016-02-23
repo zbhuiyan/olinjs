@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 //name, price and if ingredient is in stock
 var twoteSchema = mongoose.Schema({
 	user: String,
-	text: Array,
+	text: String,
 	dateAndTime: Number
 });
 

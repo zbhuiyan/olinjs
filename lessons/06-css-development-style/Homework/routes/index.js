@@ -36,20 +36,25 @@ routes.authenticate = function(req, res){
 routes.post = function(req,res){
 	//post a twote, disabled/not visible if user isnt logged in
 	//include display of logged-in user
-	var newTwote = new Twote(req.body);
-	console.log("post req body", req.body);
-	newTwote.user = req.session.username;
-
+	
+	var twoteObj = {};
+	twoteObj.user = req.session.username;
 	var date = new Date();
 	var time = date.getTime();
-	newTwote.time = time;
+	twoteObj.time = time;
+
+	
+	twoteObj.text = req.body.text;
+	var newTwote = new Twote(twoteObj);
+	console.log("post req body", req.body.text);
+	
 	console.log('newTwote before save', newTwote.text);
 	newTwote.save(function(err){
 		if (err){
 			console.log("Can't add new twote", err);
 		}
 		//res.send to client side
-		res.send('twotter', newTwote.text); 
+		res.send(twoteObj); 
 	
 	});
 }
