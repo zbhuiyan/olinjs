@@ -13,9 +13,11 @@ var onSuccess = function(data, status){
   console.log('data on success', data);
   var user = 'User: ' + data.user;
   var text = data.text;
+  var time = 'Time posted (in ms): ' + data.time;
   var $clone = $('.eachpost').first().clone();
   $clone.find('.text').html(text);
   $clone.find('.user').html(user);
+  $clone.find('.time').html(time);
   $('.twotelist').prepend($clone);
 };
 
@@ -29,7 +31,7 @@ $twoteform.submit(function(event){
 	var $form = $(event.target); //target = the DOM element that initiated the event
 	var twote = $form.find('input#twote').val(); //turn DOM element to jQuery obj so we can use jQ methods
 	event.preventDefault(); //makes posting twote not work...
-	console.log(twote);
+	console.log('twoteform', twote);
 	var postTwote = {};
 	postTwote.text = twote;
 	$.post('/post',postTwote).done(onSuccess);
