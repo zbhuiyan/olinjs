@@ -43,12 +43,9 @@ routes.post = function(req,res){
 	var time = date.getTime();
 	twoteObj.time = time;
 
-	
 	twoteObj.text = req.body.text;
 	var newTwote = new Twote(twoteObj);
-	console.log("post req body", req.body.text);
 	
-	console.log('newTwote before save', newTwote.text);
 	newTwote.save(function(err){
 		if (err){
 			console.log("Can't add new twote", err);

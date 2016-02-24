@@ -11,7 +11,7 @@ var index = require('./routes/index');
 var mongoose = require('mongoose');
 var app = express();
 
-mongoose.connect(process.env.MONGOURI || 'mongodb://localhost/test');
+mongoose.connect(process.env.MONGOURI || 'mongodb://localhost/test'); //ahh
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public/favicon', 'favicon.ico')));

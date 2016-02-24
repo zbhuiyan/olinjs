@@ -12,6 +12,7 @@
 <div class="twoteform" style = "float:left; width: 100%">
 	<form id="twote-post-form" method="POST" action="post">
 		<h3>  Twote : <input id = "twote"  type="text" name="text"/>  <input type="submit" value="post twote" class = button></h3>
+		
 	</form>
 </div>
 
@@ -22,14 +23,14 @@
 <br>
 
 <h2> Twote Feed </h2>
-<div class = "twotelist"  style = "float: left; width: 55%;" >
+<div class = "twotelist"  style = "float: center; width: 55%;" >
 
 	<!-- {{#each text}} -->
 
 		<div class = "eachpost {{this.user}}">
 			<h3 class = "user"> User: {{this.user}}</h3>
 			<p class = 'text'> "{{this.text}}" </p>
-			<p class = 'time'> "{{this.time}}" </p>
+			<p class = 'time'> Time (in ms): {{this.time}} </p>
 		</div>
     <!--{{/each}} -->
 </div>

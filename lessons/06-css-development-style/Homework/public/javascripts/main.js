@@ -12,8 +12,8 @@ var $twoteform = $('.twoteform');
 var onSuccess = function(data, status){
   console.log('data on success', data);
   var user = 'User: ' + data.user;
-  var text = data.text;
-  var time = 'Time posted (in ms): ' + data.time;
+  var text = '"'+data.text+'"';
+  var time = "Time (in ms):"+data.time;
   var $clone = $('.eachpost').first().clone();
   $clone.find('.text').html(text);
   $clone.find('.user').html(user);
@@ -34,6 +34,8 @@ $twoteform.submit(function(event){
 	console.log('twoteform', twote);
 	var postTwote = {};
 	postTwote.text = twote;
+	postTwote.time = 
+
 	$.post('/post',postTwote).done(onSuccess);
 
 
