@@ -5,7 +5,7 @@ var $editIngredient;
 var $addIngredient; 
 var $order; 
 var $orderOpt; 
-
+//While its good to look at the solution, I can tell when you just copy code directly from it.
 function registerSubmitHandlers () {
   //unbind removes all handlers attached to the elements:
   $kitchen = $('form.kitchen').unbind();
