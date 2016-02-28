@@ -15,6 +15,10 @@ routes.home = function(req,res){
 routes.ingredients = function(req,res){	
 	//query to find all ingreds from ingredModel
 	Ingredient.find({}, function(err, data){
+		//Add error handling to all db queries. 
+		if (err) {
+			res.status(500).send("Error finding ingredients")
+		}
 		//separate instock/outofstock data
 		var inStockData = [];
 		var outStockData = [];
