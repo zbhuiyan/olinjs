@@ -1,4 +1,3 @@
-//I'd recommend splitting this into multiple files based off of funcition
 var mongoose = require('mongoose');
 //require both orderModel and ingredientModel files for schemas
 
@@ -10,16 +9,12 @@ var routes = {};
 
 routes.home = function(req,res){
 	var message = "Welcome to Burger Land!!!!"
-	res.render('message', {'message':message}); //If you want to actually display messageS
+	res.render('message', message);
 }
 
 routes.ingredients = function(req,res){	
 	//query to find all ingreds from ingredModel
 	Ingredient.find({}, function(err, data){
-		//You should do error handling
-		if (err) {
-			res.status(500).send("Error finding ingredients");
-		}
 		//separate instock/outofstock data
 		var inStockData = [];
 		var outStockData = [];
@@ -41,8 +36,7 @@ routes.ingredients = function(req,res){
 
 routes.order = function(req,res){
 	//query find all ingreds 
-	Ingredient.find({},function(err,data){
-		//See above
+	Ingredient.find(function(err,data){
 		var packageddata = {'ingredients':data};
 		res.render('order', packageddata);
 	})
@@ -50,8 +44,7 @@ routes.order = function(req,res){
 
 routes.kitchen = function(req,res){
 	//query find all orders
-	Order.find({},function(err,data){
-		//see above
+	Order.find(function(err,data){
 		var packageddata = {'orders':data};
 		//render to kitchen.handlebars
 		console.log(packageddata.orders[0].id);
@@ -71,7 +64,6 @@ routes.fulfilled = function(req,res){
 	// var ingredientID = req.body.id;
 	console.log('whats')
 	Order.findOneAndRemove({'__id':orderID}, function(err, data){
-		//And Again
 		res.send({orderID: orderID}); //stop processing and return ID
 	});
 }
@@ -87,7 +79,6 @@ routes.markOutOfStock = function(req,res){
 	var ingredientID = req.body.id;
 	//Model.update(conditions, update, callback)
 	Ingredient.update({'__id':ingredientID}, {'inStock':false}, function(err, data){
-		//and here
 		res.end(ingredientID);
 	});
 }
@@ -111,7 +102,6 @@ routes.placeOrder = function(req,res){
 	var ordeR = new Order(packageddata);
 	var message = 'Order received'
 	ordeR.save(function(err,data){
-		//And here
 		res.render('message', message);
 	});
 }
