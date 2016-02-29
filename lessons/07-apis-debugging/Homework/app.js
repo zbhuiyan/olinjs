@@ -9,7 +9,6 @@ var session = require('express-session')
 //local
 var index = require('./routes/index');
 var mongoose = require('mongoose');
-var passport = require('passport');
 var app = express();
 var auth = require('./auth');
 
